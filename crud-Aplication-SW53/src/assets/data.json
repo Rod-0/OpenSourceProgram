@@ -1,0 +1,28 @@
+{
+    "students": [
+        {
+            "id": 1,
+            "name": "John",
+            "age": 30,
+            "mobile": "Claro",
+            "email": "jhon@email.com",
+            "address": "Bangalore"
+        },
+        {
+            "id": 2,
+            "name": "Peter",
+            "age": 40,
+            "mobile": "Vodafone",
+            "email": "peter@email.com",
+            "address": "Hyderabad"
+        },
+        {
+            "id": 3,
+            "name": "Mark",
+            "age": 50,
+            "mobile": "Airtel",
+            "email": "mark@email.com",
+            "address": "Chennai"
+        }
+    ]
+}
