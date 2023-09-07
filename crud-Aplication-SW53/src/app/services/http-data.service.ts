@@ -7,7 +7,7 @@ import { Observable,catchError,retry,throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpDataService {
-base_URL = 'http://localhost:3004';
+base_URL = 'http://localhost:3000';
 
 
   constructor(private http:HttpClient) {}
