@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {NgForm} from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
+import { HttpDataService } from '../services/http-data.service';
 
 @Component({
   selector: 'app-student',
@@ -30,14 +31,10 @@ onSubmit() {
   if(this.studentForm.form.valid){
     console.log('valid');
     if(this.isEditMode){
-      let tempStudent = this.dataSource.data.find((student: any) => student.id === this.studentData.id);
-      let index = this.dataSource.data.indexOf(tempStudent);
-      this.dataSource.data[index] = this.studentForm.value;
-      this.dataSource.data = this.dataSource.data;
-      this.isEditMode = false;
+      this.updateStudent()
     }else{
-      this.dataSource.data.push(this.studentForm.value);
-      this.dataSource.data = this.dataSource.data;
+      console.log("create")
+      this.addStudnet();
     }
     this.cancelEdit();
 
@@ -45,15 +42,63 @@ onSubmit() {
     console.log('invalid');
   }
 }
+constructor(private httpDataService:HttpDataService){
+  this.studentData = {} as Student;
+}
+
+
+
+ngOnInit():void{  
+  this.getAllStudent();
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
+
+getAllStudent(){
+  this.httpDataService.getList().subscribe((response:any)=>{
+    this.dataSource.data = response;
+  })
+}
+
+editItem(element:any){
+  this.studentData = element; //VALIDATE
+  this.isEditMode = true;
+}
 
 cancelEdit(){
   this.isEditMode = false;
   this.studentForm.resetForm();
 }
 
-ngOnInit() {  
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
+//delete
+deleteItem(id:string){
+  this.httpDataService.deleteItem(id).subscribe((response:any)=>{
+    this.dataSource.data = this.dataSource.data.filter((o:any)=>{
+      return o.id !== id ? o : false;
+    });
+  })
+
+  console.log(this.dataSource.data)
+}
+//add
+addStudnet(){
+  this.httpDataService.createItrem(this.studentData).subscribe((response:any)=>{
+    this.dataSource.data.push({...response});
+    this.dataSource.data = this.dataSource.data.map((o:any)=>{
+      return o;
+    })
+  }) 
 }
 
+//update
+updateStudent(){
+  this.httpDataService.updateItem(this.studentData.id,this.studentData).subscribe((response:any)=>{
+    this.dataSource.data = this.dataSource.data.map((o:any)=>{
+      if(o.id === response.id){
+        o = response;
+      }
+      return o;
+    })
+  })
+}
 }
