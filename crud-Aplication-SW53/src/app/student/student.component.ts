@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {HttpDataService} from '../services/http-data.service';
 import * as _ from 'lodash';
 
+
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
@@ -77,13 +78,12 @@ export class StudentComponent {
 
 //delete
   deleteItem(id: string) {
-    this.httpDataService.deleteItem(id).subscribe((response: any) => {
-      this.dataSource.data = this.dataSource.data.filter((o: any) => {
-        return o.id !== id ? o : false;
-      });
-    })
-
-    console.log(this.dataSource.data)
+      this.httpDataService.deleteItem(id).subscribe((response: any) => {
+        this.dataSource.data = this.dataSource.data.filter((o: any) => {
+          return o.id !== id ? o : false;
+        });
+      })
+      console.log(this.dataSource.data);
   }
 
 //add

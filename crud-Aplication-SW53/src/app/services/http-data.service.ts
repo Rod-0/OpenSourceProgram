@@ -11,7 +11,7 @@ base_URL = 'http://localhost:3000';
 
 
   constructor(private http:HttpClient) {}
-    httpOptions={ 
+    httpOptions={
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -38,7 +38,7 @@ base_URL = 'http://localhost:3000';
     return this.http.put<Student>(this.base_URL + '/students/' + id,JSON.stringify(item),this.httpOptions)
     .pipe(retry(2),catchError(this.handleError));
   }
-  createItrem(item:any):Observable<Student>{
+  createItem(item:any):Observable<Student>{
     return this.http.post<Student>(this.base_URL + '/students/',JSON.stringify(item),this.httpOptions)
     .pipe(retry(2),catchError(this.handleError));
   }

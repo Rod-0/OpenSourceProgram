@@ -14,26 +14,29 @@ import {FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import {MatSortModule} from "@angular/material/sort";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        HttpClientModule,
+        MatSortModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
