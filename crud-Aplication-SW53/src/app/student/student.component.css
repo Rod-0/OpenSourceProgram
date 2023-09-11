@@ -1,8 +1,11 @@
 .example-spacer {
     flex: 1 1 auto;
   }
-  
-  table {
-    margin-top: 150px;
-    
-  }
+
+.filterSection{
+  margin-top: 50px;
+}
+
+form{
+  margin-bottom: 150px;
+}
