@@ -5,6 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {NgForm} from '@angular/forms';
 import {MatPaginator} from '@angular/material/paginator';
 import { HttpDataService } from '../services/http-data.service';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-student',
@@ -48,7 +49,7 @@ constructor(private httpDataService:HttpDataService){
 
 
 
-ngOnInit():void{  
+ngOnInit():void{
   this.getAllStudent();
   this.dataSource.paginator = this.paginator;
   this.dataSource.sort = this.sort;
@@ -61,7 +62,7 @@ getAllStudent(){
 }
 
 editItem(element:any){
-  this.studentData = element; //VALIDATE
+  this.studentData = _.cloneDeep(element); //VALIDATE
   this.isEditMode = true;
 }
 
@@ -87,7 +88,7 @@ addStudnet(){
     this.dataSource.data = this.dataSource.data.map((o:any)=>{
       return o;
     })
-  }) 
+  })
 }
 
 //update
